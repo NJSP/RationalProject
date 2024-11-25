@@ -1,49 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RationalProject
+﻿namespace RationalProject
 {
-    internal class Rational
+    public class Rational
     {
-        public int numerator, denominator;
+        private int numerator;
+        private int denominator;
+
+        // Default constructor
         public Rational()
         {
             numerator = 0;
             denominator = 1;
         }
 
+        // Parametric constructor
         public Rational(int numerator, int denominator)
         {
             this.numerator = numerator;
             this.denominator = denominator;
         }
 
-        public static void WriteRational(Rational r)
+        // Method to write the rational number
+        public void WriteRational()
         {
-            Console.WriteLine($"{r.numerator}/{r.denominator}");
+            Console.WriteLine($"{numerator}/{denominator}");
         }
 
-        public void WriteRational2(Rational r)
+        // Method to negate the rational number
+        public void Negate()
         {
-            Console.WriteLine($"{r.numerator}/{r.denominator}");
+            numerator = -numerator;
         }
 
-        public void WriteRational3()
+        // Method to invert the rational number
+        public void Invert()
         {
-            Console.WriteLine($"{this.numerator}/{this.denominator}");
+            int temp = numerator;
+            numerator = denominator;
+            denominator = temp;
         }
 
-        public void Reduce()
+        // Method to convert the rational number to double
+        public double ToDouble()
         {
-            int gcd = GCD(Math.Abs(numerator), Math.Abs(denominator));
-            this.numerator /= gcd;
-            this.denominator /= gcd;
+            return (double)numerator / denominator;
         }
 
-        static int GCD(int n1, int n2)
+        // Method to reduce the rational number to its lowest terms
+        public Rational Reduce()
+        {
+            long gcd = GCD(numerator, denominator);
+            return new Rational(numerator / (int)gcd, denominator / (int)gcd);
+        }
+
+        // Method to add two rational numbers
+        public static Rational Add(Rational r1, Rational r2)
+        {
+            int newNumerator = r1.numerator * r2.denominator + r2.numerator * r1.denominator;
+            int newDenominator = r1.denominator * r2.denominator;
+            Rational result = new Rational(newNumerator, newDenominator);
+            return result.Reduce();
+        }
+
+        // Instance method to add two rational numbers
+        public Rational Add(Rational other)
+        {
+            int newNumerator = this.numerator * other.denominator + other.numerator * this.denominator;
+            int newDenominator = this.denominator * other.denominator;
+            Rational result = new Rational(newNumerator, newDenominator);
+            return result.Reduce();
+        }
+
+        // Method to find the greatest common divisor (GCD)
+        private static long GCD(long n1, long n2)
         {
             if (n2 == 0)
             {
