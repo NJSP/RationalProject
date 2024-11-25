@@ -82,5 +82,14 @@ namespace CSC205Week04
                 arr[posMin] = tmp;
             }
         }
+
+        /* 
+         * 1) Method01 generates a specified number of random integers within a given range and writes them to a file.
+         * 2) Method02 implements the selection sort algorithm to sort an array of integers in ascending order.
+         * 3) The code sgment reads all lines from the file number.txt, converts each line to an integer, and stores
+         * these integers in an array.
+         * 4) In my case the file is located at: (C:\Users\njpet\source\repos\RationalProject\bin\Debug\net8.0)
+        */
+
     }
 }

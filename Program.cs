@@ -39,7 +39,9 @@
 
 
 
-            /* Static methods seem to be better for utility functions and operations that don't depend on instance
+            /* 
+             * #4 - Exercise 13.4
+             * Static methods seem to be better for utility functions and operations that don't depend on instance
              * data. However, there are times when you necessarily need to use or modify data specific to an instance. 
              * In those cases, you would use an instance method. Static methods tend to be easier and more concise,
              * and you don't need to instantiate an object to use them. Instance methods, on the other hand, require
